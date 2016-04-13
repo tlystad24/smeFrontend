@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Arrow SmartEverything</title>
+    
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/socket.io.js"></script>
+    <script type="text/javascript" src="js/flot/jquery.flot.js"></script>
+
+    <script type="text/javascript" src="js/charts.js"></script>
+    <script type="text/javascript" src="js/sockets.js"></script>
+  </head>
+  
+  <body>
+    <h1>Arrow SmartEverything</h1>
+    <p>This demo is a front-end to the SmartEverything board. You can see the data retrieved by the sensors, and send commands to configure special features of the board.</p>
+  	
+  	<div class="sme-form">
+  		<div>
+	  		<label>Select serial port: </label>
+	  		<select name="sme-port" id="sme-port">
+                <option value="COM1">COM1</option>
+                <option value="COM2">COM2</option>
+                <option value="COM3">COM3</option>
+                <option value="COM4">COM4</option>
+                <option value="COM5" selected>COM5</option>
+        	</select>
+  		</div>
+  	</div>
+  	<p>
+  		<span id="conn-indicator">Connection OK. Measurement interval: <span id="ms-indicator"> </span> ms.</span>
+  		<span id="disconn-indicator">Not connected. Retrying...</span>
+  		<span id="act-indicator">Data</span>
+  		<span id="ok-indicator">Command OK</span>
+  	</p>
+  	<h2>Sensor values</h2>
+  	<div class="sme-form">
+  		<div>
+	  		<label>Temperature (hum. sensor) (ºC): </label>
+	  		<input type="text" id="sme-TemperatureHumidity"></input>
+  		</div>
+  		<div>
+	  		<label>Temperature (pres. sensor) (ºC): </label>
+	  		<input type="text" id="sme-TemperaturePressure"></input>
+  		</div>
+  		<div>
+	  		<label>Pressure (mbar): </label>
+	  		<input type="text" id="sme-Pressure"></input>
+	  		<input type="checkbox" class="sme-enable" data-field="Pressure" checked></input>
+  		</div>
+  		<div>
+	  		<label>Humidity (% RH): </label>
+	  		<input type="text" id="sme-Humidity"></input>
+	  		<input type="checkbox" class="sme-enable" data-field="Humidity" checked></input>
+  		</div>
+  		<div>
+	  		<label>Accelerometer: </label>
+	  		<input type="text" id="sme-Accelerometer"></input>
+	  		<input type="checkbox" class="sme-enable" data-field="Accelerometer" checked></input>
+  		</div>
+  		<div>
+	  		<label>Gyroscope: </label>
+	  		<input type="text" id="sme-Gyroscope"></input>
+	  		<input type="checkbox" class="sme-enable" data-field="Gyroscope" checked></input>
+  		</div>
+  		<div>
+	  		<label>Magnetic: </label>
+	  		<input type="text" id="sme-Magnetic"></input>
+	  		<input type="checkbox" class="sme-enable" data-field="Magnetic" checked></input>
+  		</div>
+  		<div>
+	  		<label>Ambient Light: </label>
+	  		<input type="text" id="sme-Light"></input>
+	  		<input type="checkbox" class="sme-enable" data-field="Light" checked></input>
+  		</div>
+  		<div>
+	  		<label>Proximity: </label>
+	  		<input type="text" id="sme-Proximity"></input>
+	  		<input type="checkbox" class="sme-enable" data-field="Proximity" checked></input>
+  		</div>
+  		<div>
+	  		<label>GPS: </label>
+	  		<input type="text" id="sme-GPS"></input>
+	  		<input type="checkbox" class="sme-enable" data-field="GPS" checked></input>
+  		</div>
+  	</div>
+  	<h2>Sensor graphs</h2>
+  	<div class="sme-tbl">
+  		<h3>Accelerometer</h3>
+  		<div id="flot-Accelerometer" class="sme-grafic"></div>
+  	</div>
+  	<div class="sme-tbl">
+  		<h3>Gyroscope</h3>
+  		<div id="flot-Gyroscope" class="sme-grafic"></div>
+  	</div>
+  	<div class="sme-tbl">
+  		<h3>Magnetic</h3>
+  		<div id="flot-Magnetic" class="sme-grafic"></div>
+  	</div>
+  	<div class="sme-tbl">
+  		<h3>Ambient light</h3>
+  		<div id="flot-Light" class="sme-grafic"></div>
+  	</div>
+  	<div class="sme-tbl">
+  		<h3>Temperature</h3>
+  		<div id="flot-Temperature" class="sme-grafic"></div>
+  	</div>
+  	<div class="sme-tbl">
+  		<h3>Pressure</h3>
+  		<div id="flot-Pressure" class="sme-grafic"></div>
+  	</div>
+  	<div class="sme-tbl">
+  		<h3>Humidity</h3>
+  		<div id="flot-Humidity" class="sme-grafic"></div>
+  	</div>
+  	<div class="sme-tbl">
+  		<h3>Proximity</h3>
+  		<div id="flot-Proximity" class="sme-grafic"></div>
+  	</div>
+  	<h2>Telit SIGFOX Module</h2>
+  	<div class="sme-form">
+  		<div>
+  			<label>
+  			Send Message:
+  			</label>
+  			<input type="text" id="sme-SIGFOX-message"></input>
+  			<button id="sme-SIGFOX-send">Send</button>
+  		</div>
+  	</div>
+  	
+  </body>
+</html>
